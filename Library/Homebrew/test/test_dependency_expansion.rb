@@ -59,6 +59,14 @@ class DependencyExpansionTests < Homebrew::TestCase
     assert_equal @deps, Dependency.expand(@f)
   end
 
+  def test_preserve_child_options
+    @child = build_dep(:child, ['option'])
+    @parent = build_dep(:parent, [], [@child])
+    @deps << @parent
+    deps = Dependency.expand(@f)
+    assert_includes deps, @child
+  end
+
   def test_merges_repeated_deps_with_differing_options
     @foo2 = build_dep(:foo, ['option'])
     @baz2 = build_dep(:baz, ['option'])
