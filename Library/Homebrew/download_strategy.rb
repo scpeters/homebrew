@@ -329,6 +329,7 @@ class CurlDownloadStrategy < AbstractFileDownloadStrategy
   def _curl_opts
     copts = []
     copts << "--user" << meta.fetch(:user) if meta.key?(:user)
+    copts << "--silent"
     copts
   end
 
