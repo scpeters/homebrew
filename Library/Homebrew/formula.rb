@@ -589,6 +589,14 @@ class Formula
     prefix+"sbin"
   end
 
+  # The directory where the formula's `src` source code should be installed.
+  # This is symlinked into `HOMEBREW_PREFIX` after installation or with
+  # `brew link` for formulae that are not keg-only.
+  # This source code should only be used for reference.
+  def src
+    prefix+"src"
+  end
+
   # The directory where the formula's shared files should be installed.
   # This is symlinked into `HOMEBREW_PREFIX` after installation or with
   # `brew link` for formulae that are not keg-only.
@@ -778,6 +786,10 @@ class Formula
 
   def opt_sbin
     opt_prefix+"sbin"
+  end
+
+  def opt_src
+    opt_prefix+"src"
   end
 
   def opt_share
